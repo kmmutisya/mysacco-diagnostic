@@ -621,7 +621,7 @@ function DashboardContent({ onLock }: { onLock: () => void }) {
                         <TableCell className="text-right">
                           <div className="flex items-center justify-end gap-1">
                             <Link href={"/assess/" + a.accessCode}><Button variant="ghost" size="icon" className="h-7 w-7" title="Open Form"><ExternalLink className="h-3.5 w-3.5" /></Button></Link>
-                            {(a.status === "submitted" || a.status === "reviewed") && <Link href={"/report/" + a.id}><Button variant="ghost" size="icon" className="h-7 w-7 text-primary hover:text-primary" title="View Report"><Eye className="h-3.5 w-3.5" /></Button></Link>}
+                            <Link href={"/report/" + a.id}><Button variant="ghost" size="icon" className="h-7 w-7 text-primary hover:text-primary" title="View Report"><Eye className="h-3.5 w-3.5" /></Button></Link>
                             <Button variant="ghost" size="icon" className="h-7 w-7" title="Edit Notes" onClick={() => setEditTarget(a)}><Edit3 className="h-3.5 w-3.5" /></Button>
                             <Button variant="ghost" size="icon" className="h-7 w-7 hover:text-destructive" title="Delete" onClick={() => setDeleteTarget(a)}><Trash2 className="h-3.5 w-3.5" /></Button>
                           </div>

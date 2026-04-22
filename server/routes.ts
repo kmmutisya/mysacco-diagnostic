@@ -160,7 +160,7 @@ export async function registerRoutes(httpServer: Server, app: Express) {
 
   // Get assessment by access code
   app.get("/api/assessments/code/:code", async (req: Request, res: Response) => {
-    const assessment = await storage.getAssessmentByCode(req.params.code);
+    const assessment = await storage.getAssessmentByCode(String(req.params.code));
     if (!assessment) return res.status(404).json({ message: "Assessment not found" });
     res.json(assessment);
   });
@@ -360,7 +360,6 @@ export async function registerRoutes(httpServer: Server, app: Express) {
           kv("Reconciliation Frequency", a.reconciliationFrequency || "—"),
           kv("SASRA Reporting", a.sasraReportingCapability || "—"),
           kv("Finance Staff", a.financialStaffCount || "—"),
-          kv("Internal Audit", a.hasInternalAudit || "—"),
           kv("Accounting Score", a.accountingProficiencyScore != null ? `${a.accountingProficiencyScore}/10` : "—"),
           divider(),
 

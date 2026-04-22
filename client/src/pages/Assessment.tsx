@@ -112,7 +112,7 @@ function RadioGroup({ name, value, onChange, options, cols }: {
   options: { value: string; label: string; desc?: string }[];
   cols?: number;
 }) {
-  const compact = !options.some((o) => o.desc) && (cols || options.length >= 4);
+  const compact = !options.some((o) => o.desc) && (!!cols || options.length >= 4);
   const gridClass = cols === 2 ? "grid grid-cols-2 gap-2" : cols === 3 ? "grid grid-cols-3 gap-2" : "grid gap-2";
   return (
     <div className={gridClass}>
