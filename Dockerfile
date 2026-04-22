@@ -7,6 +7,8 @@ COPY package*.json ./
 RUN npm ci
 
 # Copy source and build
+# CACHE_BUST updated on each deploy to force rebuild
+ARG CACHE_BUST=1
 COPY . .
 RUN npm run build
 
