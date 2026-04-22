@@ -852,7 +852,7 @@ export default function Report() {
       <header className="sticky top-0 z-30 bg-white dark:bg-card border-b px-4 py-3 no-print">
         <div className="max-w-4xl mx-auto flex items-center justify-between gap-3 flex-wrap">
           <div className="flex items-center gap-3">
-            <Button variant="ghost" size="sm" onClick={() => setLocation("/#/dashboard")}>
+            <Button variant="ghost" size="sm" onClick={() => setLocation("/dashboard")}>
               <ArrowLeft className="h-4 w-4 mr-1" /> Dashboard
             </Button>
             <Separator orientation="vertical" className="h-4" />

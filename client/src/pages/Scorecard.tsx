@@ -914,6 +914,10 @@ export default function Scorecard() {
   const { id } = useParams<{ id: string }>();
   const [, setLocation] = useLocation();
 
+  // ── All hooks must come before any conditional returns (Rules of Hooks) ──
+  const pdfRef = useRef<HTMLDivElement>(null);
+  const [isPdfLoading, setIsPdfLoading] = useState(false);
+
   const { data: assessment, isLoading, isError } = useQuery<Assessment>({
     queryKey: ["/api/assessments", id],
     queryFn: async () => {
@@ -947,9 +951,6 @@ export default function Scorecard() {
   const initialSlots: AvailabilitySlot[] = (() => {
     try { return JSON.parse(assessment.availabilitySlots || "[]"); } catch { return []; }
   })();
-
-  const pdfRef = useRef<HTMLDivElement>(null);
-  const [isPdfLoading, setIsPdfLoading] = useState(false);
 
   const downloadPDF = async () => {
     const el = pdfRef.current;
