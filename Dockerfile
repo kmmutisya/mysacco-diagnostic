@@ -2,18 +2,15 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-# Install ALL dependencies (including devDeps needed for build)
+# Install production dependencies (pg, docx, etc. are referenced by compiled server bundle)
 COPY package*.json ./
-RUN npm ci
+RUN npm ci --omit=dev
 
-# Copy everything (source + pre-built dist)
-# CACHE_BUST: updated per deploy to invalidate this layer
+# Copy pre-built output — avoids layer-cache issues with npm run build
+# CACHE_BUST: update value in Railway env vars to force fresh image
 ARG CACHE_BUST=1
 ENV CACHE_BUST=$CACHE_BUST
-COPY . .
-
-# Rebuild fresh from committed source
-RUN npm run build
+COPY dist/ ./dist/
 
 EXPOSE 5000
 
